@@ -31,6 +31,13 @@ A template repo to use for new repositories.
 1. Update the Zenodo badge now that there's a real release.
     - You must do this _after_ deploying to PyPi because any new commits
       after the first release will change the versioneer-managed version string.
+1. Add all important CI steps to the branch protection rules for the `main` branch.
+1. Add Integrations for the following:
+    - AllContributors
+    - Welcome
+    - CodeCov
+    - circleci-artifacts-redirector
+    - Release Drafter? Not sure if the Action can suitably replace the Integration.
 
 ## Information about this configuration
 
@@ -39,7 +46,7 @@ A template repo to use for new repositories.
 The default configuration uses CircleCI and make to manage testing.
 After tests are run, code coverage information is pushed to CodeCov.
 CircleCI will also build the documentation as part of CI, and an artifact redirector
-is necessary to view the rendered documentation from each PR easily.
+(`circleci-artifacts-redirector`) is necessary to view the rendered documentation from each PR easily.
 
 ### Versioning with versioneer
 

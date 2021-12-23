@@ -109,7 +109,7 @@ jobs:
           paths:
               - src/template-package
       - restore_cache:  # ensure this step occurs *before* installing dependencies
-          key: deps1-{{ checksum "template-package/info.py" }}-{{ checksum "setup.py" }}
+          key: deps1-{{ checksum "template-package/setup.cfg" }}-{{ checksum "setup.py" }}
       - run:  # will overwrite template-package installation each time
           name: Generate environment
           command:  |
@@ -123,7 +123,7 @@ jobs:
             fi
             python setup.py install --user
       - save_cache:  # environment cache tied to requirements
-          key: deps1-{{ checksum "template-package/info.py" }}-{{ checksum "setup.py" }}
+          key: deps1-{{ checksum "template-package/setup.cfg" }}-{{ checksum "setup.py" }}
           paths:
             - "/opt/conda/envs/py39_env"
 
@@ -135,7 +135,7 @@ jobs:
       - attach_workspace:  # get template-package
           at: /tmp
       - restore_cache:  # load environment
-          key: deps1-{{ checksum "template-package/info.py" }}-{{ checksum "setup.py" }}
+          key: deps1-{{ checksum "template-package/setup.cfg" }}-{{ checksum "setup.py" }}
       - run:
           name: Run tests and compile coverage
           command:  |
@@ -155,7 +155,7 @@ jobs:
       - attach_workspace:  # get template-package
           at: /tmp
       - restore_cache:  # load environment
-          key: deps1-{{ checksum "template-package/info.py" }}-{{ checksum "setup.py" }}
+          key: deps1-{{ checksum "template-package/setup.cfg" }}-{{ checksum "setup.py" }}
       - run:
           name: Build documentation
           command: |
@@ -175,7 +175,7 @@ jobs:
       - attach_workspace:  # get template-package
           at: /tmp
       - restore_cache:  # load environment
-          key: deps1-{{ checksum "template-package/info.py" }}-{{ checksum "setup.py" }}
+          key: deps1-{{ checksum "template-package/setup.cfg" }}-{{ checksum "setup.py" }}
       - run:
           name: Linting
           command:  |
